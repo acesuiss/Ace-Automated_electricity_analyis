@@ -10,4 +10,8 @@ therefore must be carefully balanced against each other to create an optimal sol
   In this project, the Aim is to Implement a system that is capable of Analyzing each device of a home or commercial building with live feedback, and bill 
 generation . Entire process is based on the running time by each device and The Total power consumed and The monthly bill  will be calculated and  
 Displayed  on through the  web dashboard or a mobile application. This system will create a great impact in the places where electricity bills play a vital 
-role. By knowing the consumption history and by analysis a huge amount of electricity can be saved.          
+role. By knowing the consumption history and by analysis a huge amount of electricity can be saved.
+
+**base_code_Mark1** is the ino file to be uploaded in esp8266,remaing files are supporting  library and header files
+
+   
