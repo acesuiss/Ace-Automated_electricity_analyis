@@ -84,7 +84,7 @@ void loop() {
   BlynkEdgent.run();
   sence_ace();
   process_ace();
-  //broadcast_ace();
+  broadcast_ace();
 
 }
 
