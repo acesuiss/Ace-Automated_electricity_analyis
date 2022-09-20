@@ -24,9 +24,10 @@ role. By knowing the consumption history and by analysis a huge amount of electr
 - **Step 5**  - Verify and upload the code
 
 ## Team and Guide 
-** GUIDE **:
+**GUIDE**:
  - Dr. J SUBHASHINI , Assistant Professor/ECE, SRMIST, KTR  
-** Team ** : 
+
+**Team** : 
  - SUDHARSAN SM    , 4th Year/ECE, SRMIST, KTR (Lead)
  - HARI KRISHNAN S , 4th Year/ECE, SRMIST, KTR
  - SURYAKIRAN P    , 4th Year/ECE, SRMIST, KTR
