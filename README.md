@@ -16,15 +16,15 @@ role. By knowing the consumption history and by analysis a huge amount of electr
 
 ## Important Steps
 
-**Step 1**
+-**Step 1**
    > The base ino file name should be same as the folder name . before openong the code rename the folder and the base code file as same.
-**Step 2**
+-**Step 2**
    >Change the templete ID and password and other blynk iot credentials 
-**Step 3**
+-**Step 3**
    >Check the board details carefully under tools menu
-**Step 4**
+-**Step 4**
    >Under tools Earse flash > all flash content 
- **Step 5**
+ -**Step 5**
    >Verify and upload the code
 
    
