@@ -23,7 +23,7 @@ role. By knowing the consumption history and by analysis a huge amount of electr
 - **Step 4**  - Under tools Earse flash > all flash content                                                  
 - **Step 5**  - Verify and upload the code
 
-##Team and Guide 
+## Team and Guide 
 * GUIDE:
  - Dr. J SUBHASHINI , Assistant Professor/ECE, SRMIST, KTR  
 * Team : 
