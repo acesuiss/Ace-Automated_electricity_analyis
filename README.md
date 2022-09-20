@@ -14,4 +14,9 @@ role. By knowing the consumption history and by analysis a huge amount of electr
 
 **base_code_Mark1** is the ino file to be uploaded in esp8266,remaing files are supporting  library and header files
 
+# Important Steps
+
+**Step 1**
+    The base ino file name should be same as the folder name . before openong the code rename the folder and the base code file 
+
    
