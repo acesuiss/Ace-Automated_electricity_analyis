@@ -37,16 +37,16 @@
 
 /* ********** Function Prototype ********** */
 
-void Relaytime_data (struct time * device);
-
+void Runtime_counter(struct device_data * device);
 void sence_ace();
 void process_ace();
 void calculate(struct time * str);
 void broadcast_ace();
 float get_slab_rate(float);
+
 /* ********** To Store the Active Time  ********** */
 
-struct time {
+struct device_data {
   double sec =       0;
   double minute =     0;
   double hour =      0;
@@ -60,7 +60,7 @@ struct time {
 
 /* ********** Time Data for four devices ********** */
 
-struct time device1, device2, device3, device4;
+struct device_data device1, device2, device3, device4;
 
 
 void setup()
@@ -87,6 +87,7 @@ void loop() {
   sence_ace();
   process_ace();
   broadcast_ace();
+  delay(980);
 
 }
 
@@ -100,25 +101,25 @@ void sence_ace() {
   if (digitalRead(switch1) == HIGH)
   {
     digitalWrite(Relay1, LOW);
-    Relaytime_data(&device1);
+    Relaytimeing(&device1);
   } else digitalWrite(Relay1, HIGH);
   //Device2
   if (digitalRead(switch2) == HIGH)
   {
     digitalWrite(Relay2, LOW);
-    Relaytime_data(&device2);
+    Relaytiming(&device2);
   } else digitalWrite(Relay2, HIGH);
   //Device3
   if (digitalRead(switch3) == HIGH)
   {
     digitalWrite(Relay3, LOW);
-    Relaytime_data(&device3);
+    Runtime_counter(&device3);
   } else digitalWrite(Relay3, HIGH);
   //Device4
   if (digitalRead(switch4) == HIGH)
   {
     digitalWrite(Relay4, LOW);
-    Relaytime_data(&device4);
+    Runtime_counter(&device4);
   } else digitalWrite(Relay1, HIGH);
 }
 
@@ -133,7 +134,7 @@ void process_ace() {
 
 /* ********** To update the timing of each device in  hours minute sec total sec format for  calculation  ********** */
 
-void Relaytime_data (struct time * device)
+void Runtime_counter(struct device_data * device);
 {
   device->sec++;
   device->total_sec++;
@@ -156,7 +157,7 @@ void calculate(struct time * str) {
   
 
 }
-float get_slab_rate(float units){
+float get_slab_rate(struct device *){
   float rate ;
   if(units <=500)
   {
