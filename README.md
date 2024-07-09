@@ -24,4 +24,4 @@ role. By knowing the consumption history and by analysis a huge amount of electr
 - **Step 5**  - Verify and upload the code
 
 # Follow up
-Check on www.sudharsan.in For more Information.
+Check on www.sudharsann.in For more Information.
