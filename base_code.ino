@@ -43,16 +43,18 @@ void sence_ace();
 void process_ace();
 void calculate(struct time * str);
 void broadcast_ace();
+float get_slab_rate(float);
 /* ********** To Store the Active Time  ********** */
 
 struct time {
-  int sec =       0;
-  int minute =     0;
-  int hour =      0;
-  int total_sec = 0;
+  double sec =       0;
+  double minute =     0;
+  double hour =      0;
+  double total_min = 0;
   int power = 100;
-  int units = 0 ;
+  float units = 0 ;
   double total_amount = 0;
+  float slab_rate ;
 
 };
 
@@ -146,11 +148,47 @@ void Relaytime_data (struct time * device)
 }
 
 void calculate(struct time * str) {
-  double timeinhour = str->hour / 3600 ;
-  str->total_amount = str->power * timeinhour ;
+  double timeinhour = str-> minute / 60 ;
+  str->kilowatts = str-> power * timeinhour ;
+  str->units = str-> kilowatts /1000;
+  str-> slab_rate = get_slab_rate(str->units);
+  
+  
 
 }
-
+float get_slab_rate(float units){
+  float rate ;
+  if(units <=500)
+  {
+      if(units >= 1 && units <=100)
+        rate = 0;
+      else if(units >= 101 && units <=200)
+        rate = 2.25 ;
+      else if(units >= 201 && units <=400)
+        rate = 4.5 ;
+      else if(units >= 401 && units <=500)
+        rate = 6 ;
+  }
+  if(units > 500 && units <=9999999)
+  {
+      if(units >= 1 && units <=100)
+        rate = 0;
+      else if(units >= 101 && units <=400)
+        rate = 4.5 ;
+      else if(units >= 401 && units <=500)
+        rate = 6 ;
+      else if(units >= 501 && units <=600)
+        rate = 8 ;
+      else if(units >= 601 && units <=800)
+        rate = 9 ;
+      else if(units >= 801 && units <=1000)
+        rate = 10 ;
+      else if(units >= 1001 && units <=9999999)
+        rate = 11 ;
+     
+  }
+  return rate ;
+}
 void broadcast_ace() {
 
   Blynk.virtualWrite(V10, device1.units);     // virtual pin datas
