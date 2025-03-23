@@ -37,28 +37,30 @@
 
 /* ********** Function Prototype ********** */
 
-void Relaytime_data (struct time * device);
-
+void Runtime_counter(struct device_data * device);
 void sence_ace();
 void process_ace();
 void calculate(struct time * str);
 void broadcast_ace();
+float get_slab_rate(float);
+
 /* ********** To Store the Active Time  ********** */
 
-struct time {
-  int sec =       0;
-  int minute =     0;
-  int hour =      0;
-  int total_sec = 0;
+struct device_data {
+  double sec =       0;
+  double minute =     0;
+  double hour =      0;
+  double total_min = 0;
   int power = 100;
-  int units = 0 ;
+  float units = 0 ;
   double total_amount = 0;
+  float slab_rate ;
 
 };
 
 /* ********** Time Data for four devices ********** */
 
-struct time device1, device2, device3, device4;
+struct device_data device1, device2, device3, device4;
 
 
 void setup()
@@ -85,6 +87,7 @@ void loop() {
   sence_ace();
   process_ace();
   broadcast_ace();
+  delay(980);
 
 }
 
@@ -98,25 +101,25 @@ void sence_ace() {
   if (digitalRead(switch1) == HIGH)
   {
     digitalWrite(Relay1, LOW);
-    Relaytime_data(&device1);
+    Relaytimeing(&device1);
   } else digitalWrite(Relay1, HIGH);
   //Device2
   if (digitalRead(switch2) == HIGH)
   {
     digitalWrite(Relay2, LOW);
-    Relaytime_data(&device2);
+    Relaytiming(&device2);
   } else digitalWrite(Relay2, HIGH);
   //Device3
   if (digitalRead(switch3) == HIGH)
   {
     digitalWrite(Relay3, LOW);
-    Relaytime_data(&device3);
+    Runtime_counter(&device3);
   } else digitalWrite(Relay3, HIGH);
   //Device4
   if (digitalRead(switch4) == HIGH)
   {
     digitalWrite(Relay4, LOW);
-    Relaytime_data(&device4);
+    Runtime_counter(&device4);
   } else digitalWrite(Relay1, HIGH);
 }
 
@@ -131,7 +134,7 @@ void process_ace() {
 
 /* ********** To update the timing of each device in  hours minute sec total sec format for  calculation  ********** */
 
-void Relaytime_data (struct time * device)
+void Runtime_counter(struct device_data * device);
 {
   device->sec++;
   device->total_sec++;
@@ -146,11 +149,47 @@ void Relaytime_data (struct time * device)
 }
 
 void calculate(struct time * str) {
-  double timeinhour = str->hour / 3600 ;
-  str->total_amount = str->power * timeinhour ;
+  double timeinhour = str-> minute / 60 ;
+  str->kilowatts = str-> power * timeinhour ;
+  str->units = str-> kilowatts /1000;
+  str-> slab_rate = get_slab_rate(str->units);
+  
+  
 
 }
-
+float get_slab_rate(struct device *){
+  float rate ;
+  if(units <=500)
+  {
+      if(units >= 1 && units <=100)
+        rate = 0;
+      else if(units >= 101 && units <=200)
+        rate = 2.25 ;
+      else if(units >= 201 && units <=400)
+        rate = 4.5 ;
+      else if(units >= 401 && units <=500)
+        rate = 6 ;
+  }
+  if(units > 500 && units <=9999999)
+  {
+      if(units >= 1 && units <=100)
+        rate = 0;
+      else if(units >= 101 && units <=400)
+        rate = 4.5 ;
+      else if(units >= 401 && units <=500)
+        rate = 6 ;
+      else if(units >= 501 && units <=600)
+        rate = 8 ;
+      else if(units >= 601 && units <=800)
+        rate = 9 ;
+      else if(units >= 801 && units <=1000)
+        rate = 10 ;
+      else if(units >= 1001 && units <=9999999)
+        rate = 11 ;
+     
+  }
+  return rate ;
+}
 void broadcast_ace() {
 
   Blynk.virtualWrite(V10, device1.units);     // virtual pin datas
